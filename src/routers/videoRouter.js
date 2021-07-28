@@ -1,13 +1,17 @@
 import express from "express"; // node_modules에서 express를 찾아서 임포트 해줌
-import { see, edit, upload, deleteVideo } from "../controllers/videoController"; //노드 js는 이 경로를 이해함.
+import { 
+    watch, 
+    getEdit,
+    postEdit, 
+    getUpload,
+    postUpload,
+} from "../controllers/videoController"; //노드 js는 이 경로를 이해함.
 
 const videoRouter = express.Router();
 
-videoRouter.get("/upload", upload);
-videoRouter.get("/:id(\\d+)", see);
-videoRouter.get("/:id(\\d+)/edit", edit);
-videoRouter.get("/:id(\\d+)/delete", deleteVideo);
-
+videoRouter.get("/:id(\\d+)", watch);
+videoRouter.route("/:id(\\d+)/edit").get(getEdit).post(postEdit);
+videoRouter.route("/upload").get(getUpload).post(postUpload);
 // 여기서 순서가 중요합니다.
 // request는 맨 위부터 먼저 실행됩니다요
 // 그 다음 다음걸로 넘어갑니다요
