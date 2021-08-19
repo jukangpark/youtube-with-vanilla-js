@@ -1,16 +1,16 @@
 import express from "express"; // node_modules에서 express를 찾아서 임포트 해줌
-import { 
-    watch, 
-    getEdit,
-    postEdit, 
-    getUpload,
-    postUpload,
+import {
+  watch,
+  getEdit,
+  postEdit,
+  getUpload,
+  postUpload,
 } from "../controllers/videoController"; //노드 js는 이 경로를 이해함.
 
 const videoRouter = express.Router();
 
-videoRouter.get("/:id(\\d+)", watch);
-videoRouter.route("/:id(\\d+)/edit").get(getEdit).post(postEdit);
+videoRouter.get("/:id([0-9a-f]{24})", watch);
+videoRouter.route("/:id([0-9a-f]{24})/edit").get(getEdit).post(postEdit);
 videoRouter.route("/upload").get(getUpload).post(postUpload);
 // 여기서 순서가 중요합니다.
 // request는 맨 위부터 먼저 실행됩니다요
@@ -18,9 +18,8 @@ videoRouter.route("/upload").get(getUpload).post(postUpload);
 // express한테 여기 오는 이 id는 숫자여야 한다고 전달할 수 있다면
 
 // 정규식 Regular Expression
-// 'ab*cd' 
+// 'ab*cd'
 // ab?cd b가 선택 사항
-
 
 // 파라미터(parameter)
 // url안에 변수를 포함시킬 수 있게 해준다는 것이다.
