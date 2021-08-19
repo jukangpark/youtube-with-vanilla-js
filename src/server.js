@@ -5,7 +5,7 @@ import morgan from "morgan";
 
 import globalRouter from "./routers/globalRouter";
 import videoRouter from "./routers/videoRouter";
-import userRouter from "./routers/UserRouter";
+import userRouter from "./routers/userRouter";
 
 
 
