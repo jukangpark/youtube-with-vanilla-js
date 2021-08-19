@@ -30,18 +30,24 @@ export const getUpload = (req, res) => {
 
 export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
-  const video = new Video({
-    title,
-    description,
-    createdAt: Date.now(),
-    hashtags: hashtags.split(",").map((word) => `#${word}`),
-    meta: {
-      views: 0,
-      rating: 0,
-    },
-  });
-  const dbVideo = await video.save();
-
-  // here we will add a video to the videos array.
-  return res.redirect("/");
+  try {
+    await Video.create({
+      title,
+      description,
+      createdAt: Date.now(),
+      hashtags: hashtags.split(",").map((word) => `#${word}`),
+      meta: {
+        views: 0,
+        rating: 0,
+      },
+    });
+    return res.redirect("/");
+  } catch (error) {
+    console.log(error);
+    return res.render("upload", {
+      pageTitle: "UploadVideo",
+      errorMessage: error._message,
+      // 이제 upload 를 render 할 때 에러 메시지도 함께 render 돼
+    });
+  }
 };
