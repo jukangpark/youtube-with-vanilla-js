@@ -11,7 +11,7 @@ userRouter.get(":id", see);
 userRouter.get("/edit", edit);
 userRouter.get("/remove", remove);
 
-// 라우터는 url을 그룹화 하는 방법이야. 
+// 라우터는 url을 그룹화 하는 방법이야.
 // 공통 시작 부분으로 그룹화 하는 거야
 
 export default userRouter;

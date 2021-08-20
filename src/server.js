@@ -7,18 +7,15 @@ import globalRouter from "./routers/globalRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 
-
-
 const app = express();
 const logger = morgan("dev");
 
-
 app.set("view engine", "pug");
-app.set("views", process.cwd() + "/src/views"); 
+app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 
-// 1. Install pug 
+// 1. Install pug
 // 2.pug를 뷰 엔진으로 설정한다.
 // 3. 실제로 pug파일을 생성한다.
 
