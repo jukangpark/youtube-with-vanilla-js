@@ -5,31 +5,42 @@ export const postJoin = async (req, res) => {
   console.log(req.body);
   const { name, username, email, password, password2, location } = req.body;
   if (password !== password2) {
-    return res.render("join", {
-      pageTitle,
+    return res.status(400).render("join", {
+      pageTitle: "Join",
       errorMessage: "Password confirmation does not match.",
+      // return 을 꼭 작성해줘야 이 뒤에 실행 되는 문장들을 실행되지 않게 해줄 수 있습니다.
+      // 그걸 꼭 기억해야함.
     });
   }
   const exists = await User.exists({ $or: [{ username }, { email }] });
   //mongodb/operator/query/or $or
   if (exists) {
-    return res.render("join", {
+    return res.status(400).render("join", {
+      //400 Bad Request: 이건 클라이언트에서 발생한 에러 때문에 요청을 처리하지 못할때 쓰면 됨.
       pageTitle: "Join",
       errorMessage: "This username/email is already takem.",
     });
   }
-  await User.create({
-    name,
-    username,
-    email,
-    password,
-    location,
-  });
-  return res.redirect("/login");
+  try {
+    await User.create({
+      name,
+      username,
+      email,
+      password,
+      location,
+    });
+    return res.redirect("/login");
+  } catch (error) {
+    return res.status(400).render("join", {
+      pageTitle: "Join",
+      errorMessage: error._message,
+    });
+  }
 };
+export const getLogin = (req, res) =>
+  res.render("login", { pageTitle: "Login" });
 export const edit = (req, res) => res.send("Edit User");
 export const remove = (req, res) => res.send("Remove User");
-export const login = (req, res) => res.send("Login");
 export const logout = (req, res) => res.send("Log out");
 export const see = (req, res) => res.send("See User");
 
