@@ -1,9 +1,7 @@
-import "./db";
-import "./models/Video";
 import express from "express";
 import morgan from "morgan";
 
-import globalRouter from "./routers/globalRouter";
+import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 
@@ -29,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 // 따라서 default값을 바꿔야함
 // app.set("views"를 사용하면 우리는 이 default값을 바꿀 수 있어요);
 
-app.use("/", globalRouter);
+app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
 
