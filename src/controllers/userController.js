@@ -1,4 +1,5 @@
 import User from "../models/User";
+import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
@@ -39,6 +40,32 @@ export const postJoin = async (req, res) => {
 };
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "Login" });
+
+export const postLogin = async (req, res) => {
+  // check if account exists
+  const { username, password } = req.body;
+  const pageTitle = "Login";
+  //const exists = await User.exists({ username }); user를 두번 찾기 때문에 삭제
+  const user = await User.findOne({ username });
+  //!exists 대신 !user
+  if (!user) {
+    return res.status(400).render("login", {
+      pageTitle,
+      errorMessage: "An account with this username does not exists.",
+    });
+  }
+
+  const ok = await bcrypt.compare(password, user.password);
+  if (!ok) {
+    return res.status(400).render("login", {
+      pageTitle,
+      errorMessage: "Wrong password",
+    });
+  }
+  // check if password correct
+  console.log("LOG USER IN! COMING SOON");
+  return res.redirect("/");
+};
 export const edit = (req, res) => res.send("Edit User");
 export const remove = (req, res) => res.send("Remove User");
 export const logout = (req, res) => res.send("Log out");
