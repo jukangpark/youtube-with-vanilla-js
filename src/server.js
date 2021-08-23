@@ -23,6 +23,12 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  req.sessionStore.all((error, sessions) => {
+    console.log(sessions);
+    next();
+  });
+});
 // 1. Install pug
 // 2.pug를 뷰 엔진으로 설정한다.
 // 3. 실제로 pug파일을 생성한다.
@@ -36,6 +42,15 @@ app.use(
 // /documents/wetube 폴더에서 package.json이 node.js를 실행하고 있어.
 // 따라서 default값을 바꿔야함
 // app.set("views"를 사용하면 우리는 이 default값을 바꿀 수 있어요);
+
+app.get("/add-one", (req, res, next) => {
+  req.session.potato += 1;
+  return res.send(`${req.session.id}\n${req.session.potato}`);
+  // 브라우저마다 서로 다른 세션 id를 가진 텍스트를 보내고 있다.
+  // 서버가 브라우저한테 세션 id를 주고 있다. 그리고 브라우저가 요청을 보낼때마다
+  // 쿠키에서 세션 id를 가져와 보내주는거지. 그러면 서버가 그 세션 id를 읽고
+  //우리가 누군지 알 수 있는거야. 어떤 브라우저인지 알 수 있는거지.
+});
 
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);

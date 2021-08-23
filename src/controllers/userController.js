@@ -64,6 +64,9 @@ export const postLogin = async (req, res) => {
   }
   // check if password correct
   console.log("LOG USER IN! COMING SOON");
+  req.session.loggedIn = true;
+  req.session.user = user;
+  // 이렇게 하면 세션에 정보를 추가 하는 거야.
   return res.redirect("/");
 };
 export const edit = (req, res) => res.send("Edit User");
