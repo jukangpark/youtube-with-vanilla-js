@@ -66,7 +66,14 @@ export const postLogin = async (req, res) => {
   console.log("LOG USER IN! COMING SOON");
   req.session.loggedIn = true;
   req.session.user = user;
+  // 이 두 줄이 우리가 실제로 세션을 initialize(초기화) 하는 부분인거지.
   // 이렇게 하면 세션에 정보를 추가 하는 거야.
+
+  // session 에 saveUninitialized: false 로 설정하면 세션을 수정할 때만
+  // 세션을 db에 저장하고 쿠키를 넘겨주는 것이다.
+  // req.session.loggedIn 에 true 라는 값을 주었기 때문에 우리는 현재 이 두 줄로
+  // 세션을 수정하고 있는 것이다.
+
   return res.redirect("/");
 };
 export const edit = (req, res) => res.send("Edit User");

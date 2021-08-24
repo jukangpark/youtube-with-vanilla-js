@@ -18,10 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: "Hello!", // 나중에는 이 secret을 말 그대로 아무도 모르는 문자열로 쓸겁니다.
-    resave: true,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: "mongodb://127.0.0.1:27017/wetube" }),
+    secret: process.env.COOKIE_SECRET, // 나중에는 이 secret을 말 그대로 아무도 모르는 문자열로 쓸겁니다.
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     // 이 세션 미들웨어가 사이트로 들어오는 모두를 기억하게 할 거야.
     // 우리의 세션들은 우리의 MongoDB database에 저장되어 있다.
   })
