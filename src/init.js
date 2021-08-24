@@ -1,4 +1,4 @@
-require("dotenv").config();
+import "dotenv/config";
 import "./db"; // 파일 자체를 import 해주기 서버는 이 라인을 보는순간 이 파일을 import 해줌으로써 서버가 mongo에 연결될거야.
 import "./models/Video";
 import "./models/User";

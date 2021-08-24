@@ -1,5 +1,4 @@
 export const localsMiddleware = (req, res, next) => {
-  console.log(res.sessionID);
   res.locals.loggendIn = Boolean(req.session.loggendIn);
   res.locals.siteName = "Wetube";
   // 이 값이 False 이거나 undefined일 수도 있으니 Boolean을 사용

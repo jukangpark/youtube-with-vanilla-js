@@ -1,5 +1,3 @@
-console.log(process.env.COOKIE_SECRET, process.env.DB_URL);
-require("dotenv").config();
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
@@ -18,6 +16,7 @@ app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 
+// 이 미들웨어는 브라우저가 우리의 backend와 상호작용 할때 마다 브라우저에게 쿠키를 줌,
 app.use(
   session({
     secret: process.env.COOKIE_SECRET, // 나중에는 이 secret을 말 그대로 아무도 모르는 문자열로 쓸겁니다.
