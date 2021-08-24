@@ -5,6 +5,7 @@ import session from "express-session";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 const logger = morgan("dev");
@@ -23,17 +24,15 @@ app.use(
   })
 );
 
+/*
 app.use((req, res, next) => {
   req.sessionStore.all((error, sessions) => {
     console.log(sessions);
     next();
+    // session 을 보여주기 위한 미들웨어
   });
 });
-// 1. Install pug
-// 2.pug를 뷰 엔진으로 설정한다.
-// 3. 실제로 pug파일을 생성한다.
-
-// 기본적으로 Express는 여기있는 views 폴더 안에 있는 파일을 찾아
+*/
 
 // process.cwd() + '/views'
 // process.cwd() = current working directory
@@ -52,6 +51,7 @@ app.get("/add-one", (req, res, next) => {
   //우리가 누군지 알 수 있는거야. 어떤 브라우저인지 알 수 있는거지.
 });
 
+app.use(localsMiddleware);
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
