@@ -1,3 +1,5 @@
+console.log(process.env.COOKIE_SECRET, process.env.DB_URL);
+require("dotenv").config();
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
