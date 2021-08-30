@@ -5,6 +5,7 @@ import {
   logout,
   see,
   StartGithubLogin,
+  finishGithubLogin,
 } from "../controllers/userController";
 // 오브젝트를 열어 괄호를 열고, 같은 이름을 써야해
 // default export 는 원하는 이름을 아무거나 쓸수가 있어
@@ -16,6 +17,7 @@ userRouter.get("/logout", logout);
 userRouter.get("/edit", edit);
 userRouter.get("/remove", remove);
 userRouter.get("/github/start", StartGithubLogin);
+userRouter.get("/github/finish", finishGithubLogin);
 userRouter.get(":id", see);
 
 // 라우터는 url을 그룹화 하는 방법이야.
