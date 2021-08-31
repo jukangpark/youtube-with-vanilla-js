@@ -4,8 +4,10 @@ const videoSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true, maxLength: 80 },
   description: { type: String, required: true, trim: true, minLength: 20 },
   createdAt: { type: Date, required: true, default: Date.now },
-  hashtags: [{ type: String, trim: true }], // 스키마는 모델의 형태를 정의해주기 때문에 여기서 저장하려는 자료형은 '배열'이어야 한다. split으로 인해서 req.body에서 나온 문자열은 배열이 될것이고
-  // 이 배열을 DB에 저장하려고 하는것.. split()은 문자열을 나눠서 배열로 반환.
+  hashtags: [{ type: String, trim: true }],
+  // 스키마는 모델의 형태를 정의해주기 때문에 여기서 저장하려는 자료형은 '배열'이어야 한다.
+  // 왜냐하면 split()은 req.body.hashtags 안에 있던 문자열을 "," 로 나눠서 배열로 반환하고
+  // 그리고 그 배열은 Array.prototype.map() 메서드에 의해서 함수가 실행된이후 반환된 자료형은 배열이기 때문이다.
   meta: {
     views: { type: Number, default: 0, required: true },
     rating: { type: Number, default: 0, required: true },
