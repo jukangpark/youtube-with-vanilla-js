@@ -1,5 +1,7 @@
 import User from "../models/User";
+import fetch from "node-fetch";
 import bcrypt from "bcrypt";
+import { response } from "express";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
@@ -19,7 +21,7 @@ export const postJoin = async (req, res) => {
     return res.status(400).render("join", {
       //400 Bad Request: 이건 클라이언트에서 발생한 에러 때문에 요청을 처리하지 못할때 쓰면 됨.
       pageTitle: "Join",
-      errorMessage: "This username/email is already takem.",
+      errorMessage: "This username/email is already taken.",
     });
   }
   try {
@@ -46,7 +48,7 @@ export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const pageTitle = "Login";
   //const exists = await User.exists({ username }); user를 두번 찾기 때문에 삭제
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username, socialOnly: false });
   //!exists 대신 !user
   if (!user) {
     return res.status(400).render("login", {
@@ -98,13 +100,55 @@ export const finishGithubLogin = async (req, res) => {
   };
   const params = new URLSearchParams(config).toString();
   const finalUrl = `${baseUrl}?${params}`;
-
-  const data = await fetch(finalUrl, {
-    method: "POST",
-    headers: { Accept: "application/json" },
-  });
-  const json = await data.json();
-  console.log(json);
+  const tokenRequest = await (
+    await fetch(finalUrl, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+    })
+  ).json();
+  if ("access_token" in tokenRequest) {
+    const { access_token } = tokenRequest;
+    const apiUrl = "https://api.github.com";
+    const userData = await (
+      await fetch(`${apiUrl}/user`, {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      })
+    ).json();
+    console.log(userData);
+    const emailData = await (
+      await fetch(`${apiUrl}/user/emails`, {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      })
+    ).json();
+    const emailObj = emailData.find(
+      (email) => email.primary === true && email.verified === true
+    );
+    if (!emailObj) {
+      return res.redirect("/login");
+    }
+    let user = await User.findOne({ email: emailObj.email });
+    if (!user) {
+      user = await User.create({
+        name: userData.name,
+        avatarUrl: userData.avatar_url,
+        username: userData.login,
+        email: emailObj.email,
+        password: "",
+        socialOnly: true,
+        location: userData.location,
+      });
+    }
+    req.session.loggedIn = true;
+    req.session.user = user;
+    return res.redirect("/");
+    // create an account
+  } else {
+    return res.redirect("/login");
+  }
 };
 
 export const edit = (req, res) => res.send("Edit User");

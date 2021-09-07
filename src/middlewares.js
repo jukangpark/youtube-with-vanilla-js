@@ -1,9 +1,9 @@
 export const localsMiddleware = (req, res, next) => {
-  res.locals.loggendIn = Boolean(req.session.loggendIn);
+  res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Wetube";
   // 이 값이 False 이거나 undefined일 수도 있으니 Boolean을 사용
   console.log(res.locals);
-  res.locals.loggendInUser = req.session.user;
+  res.locals.loggedInUser = req.session.user;
   next();
 
   // next 를 호출하지 않으면 웹사이트가 work하지 않을거야.

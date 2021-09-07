@@ -18,4 +18,4 @@ db.on("error", handleError);
 db.once("open", handleOpen); // 한번만 일어남
 
 // mongodb에 새로운 database를 만드는건 아주 간단해
-// 이 url에 연결한 뒤 /뒤에 database 이름을 적어주면 돼.
+// 이 url에 연결한 뒤 /뒤에 database 이름을 적어주면 돼
