@@ -7,16 +7,17 @@ import {
   StartGithubLogin,
   finishGithubLogin,
 } from "../controllers/userController";
+import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
 // 오브젝트를 열어 괄호를 열고, 같은 이름을 써야해
 // default export 는 원하는 이름을 아무거나 쓸수가 있어
 // node js 가 다 알기 때문에 자동으로 지정해준다.
 
 const userRouter = express.Router();
 
-userRouter.get("/logout", logout);
-userRouter.route("/edit").get(getEdit).post(postEdit);
-userRouter.get("/github/start", StartGithubLogin);
-userRouter.get("/github/finish", finishGithubLogin);
+userRouter.get("/logout", protectorMiddleware, logout);
+userRouter.route("/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
+userRouter.get("/github/start", publicOnlyMiddleware, StartGithubLogin);
+userRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
 userRouter.get(":id", see);
 
 // 라우터는 url을 그룹화 하는 방법이야.
