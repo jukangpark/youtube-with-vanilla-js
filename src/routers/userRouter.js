@@ -9,7 +9,11 @@ import {
   getChangePassword,
   postChangePassword,
 } from "../controllers/userController";
-import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
+import {
+  protectorMiddleware,
+  publicOnlyMiddleware,
+  uploadFiles,
+} from "../middlewares";
 // 오브젝트를 열어 괄호를 열고, 같은 이름을 써야해
 // default export 는 원하는 이름을 아무거나 쓸수가 있어
 // node js 가 다 알기 때문에 자동으로 지정해준다.
@@ -17,7 +21,11 @@ import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
 const userRouter = express.Router();
 
 userRouter.get("/logout", protectorMiddleware, logout);
-userRouter.route("/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
+userRouter
+  .route("/edit")
+  .all(protectorMiddleware)
+  .get(getEdit)
+  .post(uploadFiles.single("avatar"), postEdit);
 userRouter
   .route("/change-password")
   .all(protectorMiddleware)

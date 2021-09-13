@@ -1,10 +1,10 @@
+import multer from "multer";
+
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Wetube";
   // 이 값이 False 이거나 undefined일 수도 있으니 Boolean을 사용
-  console.log(res.locals);
   res.locals.loggedInUser = req.session.user || {};
-  console.log(req.session.user);
   next();
 
   // next 를 호출하지 않으면 웹사이트가 work하지 않을거야.
@@ -27,3 +27,5 @@ export const publicOnlyMiddleware = (req, res, next) => {
     return res.redirect("/");
   }
 };
+
+export const uploadFiles = multer({ dest: "uploads/" });

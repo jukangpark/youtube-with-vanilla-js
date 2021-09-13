@@ -2,7 +2,7 @@ extends base
 
 block content
     small= errorMessage
-    form(method="POST")
+    form(method="POST", enctype="multipart/form-data")
         label(for="avatar") Avatar 
         input(type="file", id="avatar", name="avatar", accept="image/*")
         input(value=loggedInUser.name , name="name", type="text", required)
