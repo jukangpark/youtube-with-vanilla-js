@@ -6,6 +6,8 @@ import {
   see,
   StartGithubLogin,
   finishGithubLogin,
+  getChangePassword,
+  postChangePassword,
 } from "../controllers/userController";
 import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
 // 오브젝트를 열어 괄호를 열고, 같은 이름을 써야해
@@ -16,6 +18,11 @@ const userRouter = express.Router();
 
 userRouter.get("/logout", protectorMiddleware, logout);
 userRouter.route("/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
+userRouter
+  .route("/change-password")
+  .all(protectorMiddleware)
+  .get(getChangePassword)
+  .post(postChangePassword);
 userRouter.get("/github/start", publicOnlyMiddleware, StartGithubLogin);
 userRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
 userRouter.get(":id", see);

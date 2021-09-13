@@ -1,9 +1,15 @@
 extends base
 
 block content
+    small= errorMessage
     form(method="POST")
+        label(for="avatar") Avatar 
+        input(type="file", id="avatar", name="avatar", accept="image/*")
         input(value=loggedInUser.name , name="name", type="text", required)
         input(value=loggedInUser.email, name="email", type="email", required)
         input(value=loggedInUser.username, name="username", type="text", required)
         input(value=loggedInUser.location, name="location", type="text", required)
         input(type="submit", value="Update Profile")
+        if !loggedInUser.socialOnly
+            hr
+            a(href="change-password") Change Password &rarr;
