@@ -1,4 +1,4 @@
-import multer from "multer";
+const multer = require("multer");
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
