@@ -1,6 +1,7 @@
 // 내가 만든 객체를
 // 우리의 template에 보낼 것입니다.
 import Video from "../models/Video";
+import User from "../models/User";
 // Video만 import 하면 formatHashtags도 딸려오지.
 
 export const home = async (req, res) => {
@@ -10,7 +11,8 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id);
+  const video = await Video.findById(id).populate("owner");
+  console.log(video);
   if (!video) {
     return res.render("404", { pageTitle: "Video not found." });
     // if 안에 return 이 없으면 JavaScript 는 영상이 없을 때 if 안의 코드를 실행하고
@@ -50,6 +52,9 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
+  const {
+    user: { _id },
+  } = req.session;
   const { path: fileUrl } = req.file;
   const { title, description, hashtags } = req.body;
   try {
@@ -57,6 +62,7 @@ export const postUpload = async (req, res) => {
       title,
       description,
       fileUrl,
+      owner: _id,
       hashtags: Video.formatHashtags(hashtags), // 각자의 특별한 static function
     });
     return res.redirect("/");

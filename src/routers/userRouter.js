@@ -33,7 +33,7 @@ userRouter
   .post(postChangePassword);
 userRouter.get("/github/start", publicOnlyMiddleware, StartGithubLogin);
 userRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
-userRouter.get(":id", see);
+userRouter.get("/:id", see);
 
 // 라우터는 url을 그룹화 하는 방법이야.
 // 공통 시작 부분으로 그룹화 하는 거야
