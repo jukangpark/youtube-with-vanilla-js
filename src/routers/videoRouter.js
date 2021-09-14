@@ -7,7 +7,7 @@ import {
   postUpload,
   deleteVideo,
 } from "../controllers/videoController"; //노드 js는 이 경로를 이해함.
-import { protectorMiddleware } from "../middlewares";
+import { protectorMiddleware, videoUpload } from "../middlewares";
 
 const videoRouter = express.Router();
 
@@ -25,7 +25,7 @@ videoRouter
   .route("/upload")
   .all(protectorMiddleware)
   .get(getUpload)
-  .post(postUpload);
+  .post(videoUpload.single("video"), postUpload);
 
 // 여기서 순서가 중요합니다.
 // request는 맨 위부터 먼저 실행됩니다요
