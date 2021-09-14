@@ -1,6 +1,7 @@
 import User from "../models/User";
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
+import Video from "../models/Video";
 import { response } from "express";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
@@ -233,12 +234,11 @@ export const see = async (req, res) => {
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not found." });
   }
+  const videos = await Video.find({ owner: user._id });
+  console.log(videos);
   return res.render("users/profile", {
     pageTitle: user.name,
     user,
+    videos,
   });
 };
-
-// 나는 이 세 함수를 바깥과 공유하고 싶거든
-// export default를 쓰면 한가지 밖에 못 내보냄
-// 따라서 각각의 함수에 export를 담아뒀어
