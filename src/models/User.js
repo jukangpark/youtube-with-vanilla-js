@@ -13,8 +13,10 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function () {
-  // 여기서 this.password는 유저가 입력한 password를 말합니다.
-  this.password = await bcrypt.hash(this.password, 5);
+  // 여기서 this.password는 유저가 입력한 password를 말합니다.\
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 5);
+  }
 });
 
 const User = mongoose.model("User", userSchema);
