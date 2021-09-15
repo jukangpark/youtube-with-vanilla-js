@@ -23,10 +23,17 @@ export const watch = async (req, res) => {
 
 export const getEdit = async (req, res) => {
   const { id } = req.params;
+  const {
+    user: { _id },
+  } = req.session;
   const video = await Video.findById(id);
   if (!video) {
     // 만약 존재하지 않는 영상이면 "Video not found" 를 출력할거야.
     return res.status(404).render("404", { pageTitle: "Video not found" });
+  }
+
+  if (String(video.owner) !== String(_id)) {
+    return res.status(403).redirect("/");
   }
   return res.render("edit", { pageTitle: `Edit : ${video.title}`, video });
 };
