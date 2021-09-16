@@ -11,7 +11,6 @@ const videoSchema = new mongoose.Schema({
   // 그리고 그 배열은 Array.prototype.map() 메서드에 의해서 함수가 실행된이후 반환된 자료형은 배열이기 때문이다.
   meta: {
     views: { type: Number, default: 0, required: true },
-    rating: { type: Number, default: 0, required: true },
   },
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
