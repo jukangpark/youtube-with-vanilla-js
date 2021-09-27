@@ -5,7 +5,9 @@ import User from "../models/User";
 // Video만 import 하면 formatHashtags도 딸려오지.
 
 export const home = async (req, res) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" });
+  const videos = await Video.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   return res.render("home", { pageTitle: "Home", videos });
 };
 
@@ -123,7 +125,7 @@ export const search = async (req, res) => {
         // regex 라는 연산자를 써야해
         // 이건 mongoDB가 하는 거야
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { pageTitle: "Search", videos });
 };
