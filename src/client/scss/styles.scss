@@ -4,7 +4,12 @@
 
 // Components
 
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "./components/video.scss";
+
 // Screens
+@import "./screens/home.scss";
 
 // Defaults
 a {
@@ -17,4 +22,11 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: $bg;
   color: white;
+}
+
+main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
 }
