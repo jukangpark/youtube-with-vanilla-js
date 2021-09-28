@@ -36,6 +36,7 @@ const handleMuteClick = (e) => {
     ? "fas fa-volume-mute"
     : "fas fa-volume-up";
   volumeRange.value = video.muted ? 0 : volumeValue;
+  // 만약 내가 음소거를 해제를 하면, volumeValue로 가게할거야.
 };
 
 const handleVolumeChange = (event) => {
@@ -46,8 +47,8 @@ const handleVolumeChange = (event) => {
     video.muted = false;
     muteBtn.innerText = "Mute";
   }
-  volumeValue = value;
-  video.volume = value;
+  volumeValue = value; // 이 친구가 volume 이라는 global variable를 업데이트 해줄거고,
+  video.volume = value; // 이 녀석이 비디오의 볼륨을 바뀌게 할거야.
 };
 
 const formatTime = (seconds) =>
