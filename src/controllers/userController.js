@@ -159,21 +159,28 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id, avatarUrl },
+      user: { _id, avatarUrl, email: sessionEmail, username: sessionUsername },
     },
     body: { name, email, username, location },
     file,
   } = req;
-  const exists = await User.exists({
-    $or: [{ username }, { email }],
-  });
-
-  if (exists) {
-    return res.status(400).render("edit-profile", {
-      pageTitle: "Edit Profile",
-      errorMessage: "이미 사용하고 있는 username 또는 email 입니다.",
-    });
+  let searchParams = [];
+  if (sessionEmail !== email) {
+    searchParams.push({ email });
   }
+  if (sessionUsername !== username) {
+    searchParams.push({ username });
+  }
+  if (searchParams.length > 0) {
+    const foundUser = await User.findOne({ $or: searchParams });
+    if (foundUser && foundUser._id.toString() !== id) {
+      return res.status(400).render("edit-profile", {
+        pageTitle: "Edit Profile",
+        error_message: "This username/email is already taken.",
+      });
+    }
+  }
+
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
