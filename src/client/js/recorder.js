@@ -1,3 +1,4 @@
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
 
@@ -6,6 +7,8 @@ let recorder;
 let videoFile;
 
 const handleDownload = () => {
+  const ffmpeg = createFFmpeg({ log: true });
+
   const a = document.createElement("a");
   a.href = videoFile;
   a.download = "MyRecording.webm";
@@ -29,6 +32,7 @@ const handleStart = () => {
   recorder.ondataavailable = (event) => {
     console.log(event.data);
     videoFile = URL.createObjectURL(event.data);
+    console.log(videoFile);
     video.srcObject = null;
     video.src = videoFile;
     video.loop = true;
