@@ -1,4 +1,5 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
+
 const actionBtn = document.getElementById("actionBtn");
 const video = document.getElementById("preview");
 
@@ -25,7 +26,10 @@ const handleDownload = async () => {
   actionBtn.innerText = "Transcoding..";
   actionBtn.disabled = true;
 
-  const ffmpeg = createFFmpeg({ log: true });
+  const ffmpeg = createFFmpeg({
+    log: true,
+    corePath: "/static/ffmpeg-core.js",
+  });
   await ffmpeg.load();
 
   ffmpeg.FS("writeFile", files.input, await fetchFile(videoFile));
@@ -103,7 +107,7 @@ const handleStart = () => {
 
 const init = async () => {
   stream = await navigator.mediaDevices.getUserMedia({
-    audio: true,
+    audio: false,
     video: { width: 1024, height: 576 },
   });
   video.srcObject = stream;

@@ -12,11 +12,22 @@ import apiRouter from "./routers/apiRouter";
 
 const app = express();
 const logger = morgan("dev");
-
+//
+app.use(
+  "/static",
+  express.static("assets"),
+  express.static("node_modules/@ffmpeg/core/dist")
+);
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
 
 // 이 미들웨어는 브라우저가 우리의 backend와 상호작용 할때 마다 브라우저에게 쿠키를 줌,
 app.use(
