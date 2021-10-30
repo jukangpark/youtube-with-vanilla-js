@@ -7,7 +7,8 @@
     "url": "git+https://github.com/jukangpark/Youtube_Clone.git"
   },
   "scripts": {
-    "build:server": "babel src/init.js -d build",
+    "start": "node build/init.js",
+    "build:server": "babel src -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack"
   },
