@@ -199,9 +199,11 @@ export const postEdit = async (req, res) => {
 };
 
 export const logout = (req, res) => {
+  const isHeroku = process.env.NODE_ENV === "production";
   req.session.destroy();
-  req.flash("info", "Bye Bye");
-  return res.redirect("/");
+  return res.redirect(
+    isHeroku ? "https://youtubebyjukang.herokuapp.com/users/logout" : "/"
+  );
 };
 
 export const getChangePassword = (req, res) => {
