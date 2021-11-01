@@ -77,7 +77,7 @@ export const postLogin = async (req, res) => {
   // req.session.loggedIn 에 true 라는 값을 주었기 때문에 우리는 현재 이 두 줄로
   // 세션을 수정하고 있는 것이다.
 
-  return res.redirect("/");
+  return res.redirect("https://youtubebyjukang.herokuapp.com");
 };
 
 export const StartGithubLogin = (req, res) => {
