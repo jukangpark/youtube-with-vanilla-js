@@ -9,9 +9,18 @@ const s3 = new aws.S3({
   },
 });
 
-const multerUploader = multerS3({
+const isHeroku = process.env.NODE_ENV === "production";
+
+const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "youtubejukangpark",
+  bucket: "youtubejukangpark/images",
+  acl: "public-read",
+});
+
+const s3VideoUploader = multerS3({
+  s3: s3,
+  bucket: "youtubejukangpark/videos",
+  acl: "public-read",
 });
 
 export const localsMiddleware = (req, res, next) => {
@@ -19,6 +28,7 @@ export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "Wetube";
   // 이 값이 False 이거나 undefined일 수도 있으니 Boolean을 사용
   res.locals.loggedInUser = req.session.user || {};
+  res.locals.isHeroku = isHeroku;
   next();
 
   // next 를 호출하지 않으면 웹사이트가 work하지 않을거야.
@@ -49,7 +59,7 @@ export const avatarUpload = multer({
   limits: {
     fileSize: 3000000,
   },
-  storage: multerUploader,
+  storage: isHeroku ? s3ImageUploader : undefined,
 });
 
 export const videoUpload = multer({
@@ -57,5 +67,5 @@ export const videoUpload = multer({
   limits: {
     fileSize: 10000000,
   },
-  storage: multerUploader,
+  storage: isHeroku ? s3VideoUploader : undefined,
 });

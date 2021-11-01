@@ -1,1 +1,32 @@
-(()=>{function e(e,t,n,r,a,o,c){try{var i=e[o](c),u=i.value}catch(e){return void n(e)}i.done?t(u):Promise.resolve(u).then(r,a)}var t=document.getElementById("videoContainer"),n=document.getElementById("commentForm"),r=function(e,t){var n=document.querySelector(".video__comments ul"),r=document.createElement("li");r.dataset.id=t,r.className="video__comment";var a=document.createElement("i");a.className="fas fa-comment";var o=document.createElement("span");o.innerText="".concat(e);var c=document.createElement("span");c.innerText="X",r.appendChild(a),r.appendChild(o),r.appendChild(c),n.prepend(r)},a=function(){var a,o=(a=regeneratorRuntime.mark((function e(a){var o,c,i,u,m,d;return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:if(a.preventDefault(),o=n.querySelector("textarea"),c=o.value,i=t.dataset.id,""!==c){e.next=6;break}return e.abrupt("return");case 6:return e.next=8,fetch("/api/videos/".concat(i,"/comment"),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:c})});case 8:if(201!==(u=e.sent).status){e.next=16;break}return e.next=12,u.json();case 12:m=e.sent,d=m.newCommentId,r(c,d),o.value="";case 16:case"end":return e.stop()}}),e)})),function(){var t=this,n=arguments;return new Promise((function(r,o){var c=a.apply(t,n);function i(t){e(c,r,o,i,u,"next",t)}function u(t){e(c,r,o,i,u,"throw",t)}i(void 0)}))});return function(e){return o.apply(this,arguments)}}();n&&n.addEventListener("submit",a)})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/client/js/commentSection.js":
+/*!*****************************************!*\
+  !*** ./src/client/js/commentSection.js ***!
+  \*****************************************/
+/***/ (() => {
+
+eval("function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }\n\nfunction _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err); } _next(undefined); }); }; }\n\nvar videoContainer = document.getElementById(\"videoContainer\");\nvar form = document.getElementById(\"commentForm\");\n\nvar addComment = function addComment(text, id) {\n  var videoComments = document.querySelector(\".video__comments ul\");\n  var newComment = document.createElement(\"li\");\n  newComment.dataset.id = id;\n  newComment.className = \"video__comment\";\n  var icon = document.createElement(\"i\");\n  icon.className = \"fas fa-comment\";\n  var span = document.createElement(\"span\");\n  span.innerText = \"\".concat(text);\n  var span2 = document.createElement(\"span\");\n  span2.innerText = \"X\";\n  newComment.appendChild(icon);\n  newComment.appendChild(span);\n  newComment.appendChild(span2);\n  videoComments.prepend(newComment);\n};\n\nvar handleSubmit = /*#__PURE__*/function () {\n  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {\n    var textarea, text, videoId, response, _yield$response$json, newCommentId;\n\n    return regeneratorRuntime.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            event.preventDefault();\n            textarea = form.querySelector(\"textarea\");\n            text = textarea.value;\n            videoId = videoContainer.dataset.id;\n\n            if (!(text === \"\")) {\n              _context.next = 6;\n              break;\n            }\n\n            return _context.abrupt(\"return\");\n\n          case 6:\n            _context.next = 8;\n            return fetch(\"/api/videos/\".concat(videoId, \"/comment\"), {\n              method: \"POST\",\n              headers: {\n                \"Content-Type\": \"application/json\"\n              },\n              body: JSON.stringify({\n                text: text\n              })\n            });\n\n          case 8:\n            response = _context.sent;\n\n            if (!(response.status === 201)) {\n              _context.next = 16;\n              break;\n            }\n\n            _context.next = 12;\n            return response.json();\n\n          case 12:\n            _yield$response$json = _context.sent;\n            newCommentId = _yield$response$json.newCommentId;\n            addComment(text, newCommentId);\n            textarea.value = \"\";\n\n          case 16:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n\n  return function handleSubmit(_x) {\n    return _ref.apply(this, arguments);\n  };\n}();\n\nif (form) {\n  form.addEventListener(\"submit\", handleSubmit);\n}\n\n//# sourceURL=webpack://Youtube_Clone/./src/client/js/commentSection.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/client/js/commentSection.js"]();
+/******/ 	
+/******/ })()
+;
