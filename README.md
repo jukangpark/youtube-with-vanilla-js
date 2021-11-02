@@ -1,5 +1,7 @@
-# Youtube_Clone
+Youtube_Clone
+==============
 Youtube Clone built using NodeJS, Express, Mongo and ES6
+----------------------------------------------------------
 
 h1 Bug fix
 Failed to load resource: net::ERR_BLOCKED_BY_RESPONSE.NotSameOriginAfterDefaultedToSameOriginByCoep
