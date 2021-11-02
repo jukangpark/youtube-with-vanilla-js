@@ -285,12 +285,13 @@ input[type=submit]::placeholder {
 #videoContainer {
   width: 100%;
   position: relative;
+  background-color: gray;
 }
 #videoContainer video {
   width: 100%;
 }
 #videoContainer .videoControls {
-  opacity: 0;
+  opacity: 100;
   transition: opacity 0.5s ease-in-out;
   align-items: center;
   border-radius: 10px;
@@ -304,7 +305,7 @@ input[type=submit]::placeholder {
   grid-template-columns: 1fr 4fr 1fr auto;
   gap: 10px;
   justify-content: space-between;
-  background-color: #0f1117;
+  background-color: transparent;
   padding: 10px;
   left: 0;
   box-sizing: border-box;
