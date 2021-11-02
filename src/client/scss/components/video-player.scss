@@ -19,28 +19,44 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr auto;
-    gap: 10px;
-    justify-content: space-between;
+    display: absolute;
+    align-items: center;
     background-color: transparent;
     padding: 10px;
     left: 0;
     box-sizing: border-box;
+    .videoControls__progressBar {
+      display: flex;
+      align-items: center;
+      #mute > i {
+        margin-left: 10px;
+      }
+      #mute > input {
+        width: 70%;
+      }
+    }
+    .videoControls__progressBar > input {
+      width: 90%;
+    }
+    .videoControls__buttons {
+      display: flex;
+    }
     .videoControls__play {
       display: flex;
       align-items: center;
       justify-content: space-around;
       .videoControls__playBtn {
-        margin: 0px 15px;
+        margin-left: 5px;
       }
       .videoControls__time {
+        margin-left: 10px;
         font-size: 12px;
       }
     }
     .videoControls__volume {
       display: flex;
-      align-items: center;
+      margin-left: 10px;
+
       span {
         margin-left: 10px;
         i {
