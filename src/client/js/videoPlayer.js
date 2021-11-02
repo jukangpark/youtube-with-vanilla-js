@@ -40,11 +40,18 @@ const handleVolumeChange = (event) => {
   const {
     target: { value },
   } = event;
+
   if (video.muted) {
     video.muted = false;
   }
+
   volumeValue = value; // 이 친구가 volume 이라는 global variable를 업데이트 해줄거고,
   video.volume = value; // 이 녀석이 비디오의 볼륨을 바뀌게 할거야.
+  if (video.volume === 0) {
+    muteBtnIcon.classList = "fas fa-volume-mute";
+  } else {
+    muteBtnIcon.classList = "fas fa-volume-up";
+  }
 };
 
 const formatTime = (seconds) =>

@@ -7,19 +7,20 @@ block content
         else 
             video(src="/" + video.fileUrl)
         div#videoControls.videoControls
-            div.videoControls__progressBar
-                input(type="range",step="1", value="0", min="0")#timeline.videoControls__timeline
-                span#mute
+            div.videoControls__range
+                div.videoControls__progressBar
+                    input(type="range",step="1", value="0", min="0")#timeline.videoControls__timeline
+                div.videoControls__volume 
+                    span#mute
                         i.fas.fa-volume-up
-                        input(type="range",step="0.1", value=0.5, min="0", max="1")#volume
-                span#fullScreen
-                    i.fas.fa-expand
+                    input(type="range",step="0.1", value=0.5, min="0", max="1")#volume
+                    span#fullScreen
+                        i.fas.fa-expand
             div.videoControls__buttons
                 div.videoControls__play
                     span#play.videoControls__playBtn
                         i.fas.fa-play
-                div.videoControls__volume 
-                    
+                
                     
                 div.videoControls__time
                     span#currenTime 00:00

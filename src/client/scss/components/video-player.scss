@@ -24,10 +24,9 @@
     padding: 10px;
     left: 0;
     box-sizing: border-box;
-    .videoControls__progressBar {
+    .videoControls__range {
       display: flex;
       align-items: center;
-
       input[type="range"] {
         -webkit-appearance: none;
         overflow: hidden;
@@ -54,46 +53,47 @@
       }
       #mute {
         display: flex;
-        align-items: center;
+        cursor: pointer;
         i {
-          margin-left: 10px;
-        }
-        input {
-          width: 70%;
+          padding-right: 10px;
         }
       }
-    }
-    .videoControls__progressBar > input {
-      width: 90%;
-    }
+      .videoControls__progressBar {
+        display: flex;
+        width: 100%;
+        align-items: center;
+      }
+      .videoControls__volume {
+        display: flex;
+        align-items: center;
+        span {
+          margin-left: 10px;
+          i {
+            font-size: 20px;
+          }
+        }
+      }
+    } // videoControls__range
+
     .videoControls__buttons {
       display: flex;
-    }
-    .videoControls__play {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      .videoControls__playBtn {
-        margin-left: 5px;
-      }
-      .videoControls__time {
-        margin-left: 10px;
-        font-size: 12px;
-      }
-    }
-    .videoControls__volume {
-      display: flex;
-      margin-left: 10px;
-
-      span {
-        margin-left: 10px;
-        i {
-          font-size: 20px;
+      .videoControls__play {
+        margin-right: 10px;
+        #play {
+          display: block;
+          width: 35px;
+          padding: 0px 10px;
+          box-sizing: border-box;
+          text-align: center;
+          cursor: pointer;
+        }
+        #play > i {
+          font-size: 17px;
         }
       }
-    }
-  }
-}
+    } // videoControls__buttons
+  } // videoControls
+} // videoContainer
 
 #videoMetadata {
   .title {
@@ -109,4 +109,8 @@
     color: white;
     text-decoration: underline;
   }
+}
+
+#fullScreen {
+  cursor: pointer;
 }
