@@ -21,4 +21,4 @@ CRUD functions
 ### Update News
 
 2021.11.02(video duration bug, CORS Error, IOS video play bug fixed)
-2021.11.02(video duration background-color fiexed)
+2021.11.02(video duration background-color fixed)
