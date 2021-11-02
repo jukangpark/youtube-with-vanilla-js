@@ -315,10 +315,37 @@ input[type=submit]::placeholder {
   display: flex;
   align-items: center;
 }
-#videoContainer .videoControls .videoControls__progressBar #mute > i {
+#videoContainer .videoControls .videoControls__progressBar input[type=range] {
+  -webkit-appearance: none;
+  overflow: hidden;
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  cursor: pointer;
+  background: #8e8e93;
+  border-radius: 0;
+  /* iOS */
+}
+#videoContainer .videoControls .videoControls__progressBar input[type=range]:focus {
+  outline: none;
+}
+#videoContainer .videoControls .videoControls__progressBar input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0px;
+  height: 0px;
+  background: #ff0000;
+  box-shadow: -100vw 0 0 100vw #ff0000;
+  border: 0.1px solid #ff0000;
+  cursor: pointer;
+}
+#videoContainer .videoControls .videoControls__progressBar #mute {
+  display: flex;
+  align-items: center;
+}
+#videoContainer .videoControls .videoControls__progressBar #mute i {
   margin-left: 10px;
 }
-#videoContainer .videoControls .videoControls__progressBar #mute > input {
+#videoContainer .videoControls .videoControls__progressBar #mute input {
   width: 70%;
 }
 #videoContainer .videoControls .videoControls__progressBar > input {
@@ -358,6 +385,10 @@ input[type=submit]::placeholder {
   color: gray;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+#videoMetadata div > div > span > a {
+  color: white;
+  text-decoration: underline;
 }
 
 .search__form {
