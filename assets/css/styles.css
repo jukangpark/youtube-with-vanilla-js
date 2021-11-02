@@ -253,7 +253,7 @@ input:not(input[type=range]) .social__btn,
 input[type=submit] .social__btn {
   border-radius: 5px;
   padding: 12px 20px;
-  background-color: white !important;
+  background-color: #ff0000;
   color: #cc0d00 !important;
   text-align: center !important;
   cursor: pointer;
@@ -409,20 +409,28 @@ input[type=submit]::placeholder {
 #commentForm {
   display: flex;
 }
+#commentForm :focus {
+  outline: none !important;
+  border-bottom: 0.1px solid white;
+  transition-duration: 400ms;
+}
 #commentForm textarea {
   width: 100%;
   height: 40px;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: black;
   font-size: 14px;
-  resize: both;
   color: white;
-  line-height: 20px;
+  line-height: 40px;
+  resize: none;
+  border: none;
+  overflow: hidden;
 }
 #commentForm button {
   border: none;
   width: 70px;
   height: 40px;
+  margin-left: 1px;
   background-color: #383852;
   color: gray;
   cursor: pointer;
@@ -431,6 +439,7 @@ input[type=submit]::placeholder {
   background-color: #ff0000;
   color: white;
   transition-duration: 400ms;
+  border: none;
 }
 
 .search__form {

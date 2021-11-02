@@ -128,21 +128,29 @@
 
 #commentForm {
   display: flex;
+  :focus {
+    outline: none !important;
+    border-bottom: 0.1px solid white;
+    transition-duration: 400ms;
+  }
 
   textarea {
     width: 100%;
     height: 40px;
     box-sizing: border-box;
-    background-color: transparent;
+    background-color: black;
     font-size: 14px;
-    resize: both;
     color: white;
-    line-height: 20px;
+    line-height: 40px;
+    resize: none;
+    border: none;
+    overflow: hidden;
   }
   button {
     border: none;
     width: 70px;
     height: 40px;
+    margin-left: 1px;
     background-color: #383852;
     color: gray;
     cursor: pointer;
@@ -151,5 +159,6 @@
     background-color: #ff0000;
     color: white;
     transition-duration: 400ms;
+    border: none;
   }
 }
