@@ -49,3 +49,14 @@
     }
   }
 }
+
+#videoMetadata {
+  .title {
+    font-size: 2em;
+  }
+  div > div {
+    color: gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
