@@ -1,6 +1,7 @@
 #videoContainer {
   width: 100%;
   position: relative;
+
   video {
     width: 100%;
   }
@@ -96,14 +97,18 @@
 } // videoContainer
 
 #videoMetadata {
+  padding-bottom: 30px;
+
   .title {
     font-size: 2em;
-    margin-top: 10px;
+    border-bottom: 0.2px solid #303030;
+    padding: 30px 0;
   }
   div > div {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 0.2px solid #303030;
     color: gray;
-    margin-top: 10px;
-    margin-bottom: 10px;
   }
   div > div > span > a {
     color: white;
@@ -111,6 +116,40 @@
   }
 }
 
+#hashtags {
+  text-decoration: underline;
+  color: #1818a5;
+  cursor: pointer;
+}
+
 #fullScreen {
   cursor: pointer;
+}
+
+#commentForm {
+  display: flex;
+
+  textarea {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: transparent;
+    font-size: 14px;
+    resize: both;
+    color: white;
+    line-height: 20px;
+  }
+  button {
+    border: none;
+    width: 70px;
+    height: 40px;
+    background-color: #383852;
+    color: gray;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #ff0000;
+    color: white;
+    transition-duration: 400ms;
+  }
 }
