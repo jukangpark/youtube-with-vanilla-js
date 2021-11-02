@@ -287,6 +287,7 @@ input[type=submit]::placeholder {
 #videoContainer {
   width: 100%;
   position: relative;
+  background-color: red;
 }
 #videoContainer video {
   width: 100%;
@@ -297,8 +298,8 @@ input[type=submit]::placeholder {
   align-items: center;
   border-radius: 10px;
   position: absolute;
+  width: 98%;
   bottom: 10px;
-  width: 95%;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -338,6 +339,7 @@ input[type=submit]::placeholder {
 
 #videoMetadata .title {
   font-size: 2em;
+  margin-top: 10px;
 }
 #videoMetadata div > div {
   color: gray;

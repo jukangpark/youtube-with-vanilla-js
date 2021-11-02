@@ -1,6 +1,7 @@
 #videoContainer {
   width: 100%;
   position: relative;
+  background-color: red;
   video {
     width: 100%;
   }
@@ -13,8 +14,8 @@
     align-items: center;
     border-radius: 10px;
     position: absolute;
+    width: 98%;
     bottom: 10px;
-    width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -53,6 +54,7 @@
 #videoMetadata {
   .title {
     font-size: 2em;
+    margin-top: 10px;
   }
   div > div {
     color: gray;
