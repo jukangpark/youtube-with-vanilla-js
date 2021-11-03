@@ -15,12 +15,12 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id).populate("owner").populate("comments");
-  console.log(video);
   if (!video) {
     return res.render("404", { pageTitle: "Video not found." });
     // if 안에 return 이 없으면 JavaScript 는 영상이 없을 때 if 안의 코드를 실행하고
     // 그 밑에 코드들도 실행할텐데, 그건 우리가 원하지 않는 결과니까.
   }
+
   return res.render("watch", { pageTitle: video.title, video });
 };
 
@@ -115,7 +115,6 @@ export const deleteVideo = async (req, res) => {
   }
   await Video.findByIdAndDelete(id);
   user.videos.splice(user.videos.indexOf(id), 1);
-  console.log(user.videos);
   await user.save();
   return res.redirect("/");
 };
@@ -149,21 +148,35 @@ export const registerView = async (req, res) => {
 
 export const createComment = async (req, res) => {
   const {
-    session: { user },
     body: { text },
     params: { id },
+    session,
   } = req;
 
   const video = await Video.findById(id);
+  const user = await User.findById(session.user._id);
+
   if (!video) {
-    return res.sendStatus(404);
+    return res.status(404).render("404", { pageTitle: "Video not found." });
   }
-  const comment = await Comment.create({
+
+  const newComment = await Comment.create({
     text,
     owner: user._id,
     video: id,
   });
-  video.comments.push(comment._id);
+
+  video.comments.push(newComment);
   video.save();
-  return res.status(201).json({ newCommentId: comment._id });
+
+  user.comments.push(newComment);
+  user.save();
+
+  return res
+    .status(201)
+    .json({
+      newCommentId: newComment._id,
+      owner: user.username,
+      avatarUrl: user.avatarUrl,
+    });
 };

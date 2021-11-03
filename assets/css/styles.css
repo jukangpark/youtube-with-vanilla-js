@@ -546,12 +546,25 @@ input[type=submit]:disabled {
 }
 .video__comments ul li i:nth-child(3) {
   float: right;
+  margin-right: 0;
+  cursor: pointer;
+}
+.video__comments ul li i:nth-child(3):hover {
+  color: #cc0d00;
+  transition-duration: 400ms;
 }
 .video__comments .video__comment {
   padding: 10px;
   background-color: black;
+  font-size: 14px;
   color: white;
   margin-bottom: 10px;
+}
+
+.comment_avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 a {

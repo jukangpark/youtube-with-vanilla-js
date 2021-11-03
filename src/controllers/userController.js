@@ -6,7 +6,6 @@ import { response } from "express";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
-  console.log(req.body);
   const { name, username, email, password, password2, location } = req.body;
   if (password !== password2) {
     return res.status(400).render("join", {
@@ -66,7 +65,6 @@ export const postLogin = async (req, res) => {
     });
   }
   // check if password correct
-  console.log("LOG USER IN! COMING SOON");
   req.session.loggedIn = true;
   req.session.user = user;
   // 이 두 줄이 우리가 실제로 세션을 initialize(초기화) 하는 부분인거지.
@@ -117,7 +115,6 @@ export const finishGithubLogin = async (req, res) => {
         },
       })
     ).json();
-    console.log(userData);
     const emailData = await (
       await fetch(`${apiUrl}/user/emails`, {
         headers: {
@@ -164,7 +161,6 @@ export const postEdit = async (req, res) => {
     body: { name, email, username, location },
     file,
   } = req;
-  console.log(file);
   let searchParams = [];
   if (sessionEmail !== email) {
     searchParams.push({ email });
