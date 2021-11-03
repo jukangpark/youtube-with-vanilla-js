@@ -52,10 +52,9 @@ block content
         ul 
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment.id)
-                    i.fas.fa-comment
-
+                    i.fas.fa-user
                     span  #{comment.text}
-                    span ⨉
+                    i.fas.fa-trash-alt
 block scripts
     script(src="/static/js/videoPlayer.js")
     script(src="/static/js/commentSection.js")

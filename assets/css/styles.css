@@ -237,8 +237,7 @@ form:not(.search__form) {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-input:not(input[type=range]),
-input[type=submit] {
+input:not(input[type=range]):not([type=submit]) {
   all: unset;
   padding: 15px 20px;
   border-radius: 5px;
@@ -249,29 +248,29 @@ input[type=submit] {
   color: white;
   width: 90%;
 }
-input:not(input[type=range]) .social__btn,
-input[type=submit] .social__btn {
+input:not(input[type=range]):not([type=submit])::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input[type=submit] {
   border-radius: 5px;
-  padding: 12px 20px;
-  background-color: #ff0000;
-  color: #cc0d00 !important;
+  padding: 11px 20px;
+  width: 100%;
+  font-size: 16px;
+  background-color: #cc0d00 !important;
+  color: white !important;
   text-align: center !important;
-  cursor: pointer;
+  cursor: pointer !important;
   display: block;
+  box-sizing: border-box;
   border: none;
 }
-input:not(input[type=range]) .social__btn:focus,
-input[type=submit] .social__btn:focus {
+input[type=submit]:focus {
   outline: none;
 }
-input:not(input[type=range]) .social__btn:disabled,
-input[type=submit] .social__btn:disabled {
+input[type=submit]:disabled {
   opacity: 0.5;
   pointer-events: none;
-}
-input:not(input[type=range])::placeholder,
-input[type=submit]::placeholder {
-  color: rgba(255, 255, 255, 0.7);
 }
 
 .social-login {
@@ -279,7 +278,24 @@ input[type=submit]::placeholder {
   text-align: center;
 }
 .social-login .social__btn--github {
-  background-color: transparent;
+  background-color: black;
+}
+
+.social__btn {
+  border-radius: 5px;
+  padding: 12px 20px;
+  color: white;
+  text-align: center !important;
+  cursor: pointer;
+  display: block;
+  border: none;
+}
+.social__btn:focus {
+  outline: none;
+}
+.social__btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 #videoContainer {
@@ -398,7 +414,7 @@ input[type=submit]::placeholder {
 
 #hashtags {
   text-decoration: underline;
-  color: #1818a5;
+  color: white;
   cursor: pointer;
 }
 
@@ -515,17 +531,26 @@ input[type=submit]::placeholder {
 }
 
 .video__comments {
-  display: flex;
-  flex-direction: column;
-  max-width: 320px;
-  width: 100%;
+  width: 480px;
   margin: 0 auto;
   margin-top: 20px;
 }
+.video__comments ul {
+  width: 482px;
+}
+.video__comments ul li {
+  margin: 0 auto;
+}
+.video__comments ul li i {
+  margin-right: 10px;
+}
+.video__comments ul li i:nth-child(3) {
+  float: right;
+}
 .video__comments .video__comment {
   padding: 10px;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   margin-bottom: 10px;
 }
 

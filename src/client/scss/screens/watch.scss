@@ -1,14 +1,24 @@
 .video__comments {
-  display: flex;
-  flex-direction: column;
-  max-width: 320px;
-  width: 100%;
+  width: 480px;
   margin: 0 auto;
   margin-top: 20px;
+  ul {
+    width: 482px;
+    li {
+      margin: 0 auto;
+      i {
+        margin-right: 10px;
+      }
+      i:nth-child(3) {
+        float: right;
+      }
+    }
+  }
+
   .video__comment {
     padding: 10px;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     margin-bottom: 10px;
   }
 }

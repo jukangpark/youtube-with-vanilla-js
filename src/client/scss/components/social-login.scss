@@ -2,6 +2,23 @@
   padding-top: 40px;
   text-align: center;
   .social__btn--github {
-    background-color: transparent;
+    background-color: black;
+  }
+}
+
+.social__btn {
+  border-radius: 5px;
+  padding: 12px 20px;
+  color: white;
+  text-align: center !important;
+  cursor: pointer;
+  display: block;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }

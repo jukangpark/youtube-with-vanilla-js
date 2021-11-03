@@ -22,3 +22,4 @@ CRUD functions
 
 2021.11.02(video duration bug, CORS Error, IOS video play bug fixed)
 2021.11.02(video duration background-color fixed)
+2021.11.03(meta(name="viewport" content="width=device-width"))
