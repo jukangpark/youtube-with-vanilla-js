@@ -185,3 +185,31 @@ export const createComment = async (req, res) => {
     avatarUrl: user.avatarUrl,
   });
 };
+
+export const deleteComment = async (req, res) => {
+  const { videoId, commentId } = req.params;
+  const video = await Video.findById(videoId);
+  const comment = await Comment.findById(commentId);
+  const { user } = req.session;
+
+  if (String(user._id) !== String(comment.owner)) {
+    return res.sendStatus(401);
+  }
+
+  if (!comment) {
+    return res.sendStatus(400);
+  }
+
+  await Comment.findByIdAndDelete(commentId);
+
+  if (!video) {
+    return res.status(404).render("404", { pageTitle: "Video not found" });
+  }
+
+  video.comments = video.comments.filter(
+    (comment) => String(comment) !== commentId
+  );
+  video.save();
+
+  return res.sendStatus(200);
+};

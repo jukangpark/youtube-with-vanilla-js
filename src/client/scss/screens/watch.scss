@@ -9,11 +9,11 @@
       i {
         margin-right: 10px;
       }
-      .delete {
+      .commentDelete {
         margin-left: 10px;
         cursor: pointer;
       }
-      .delete:hover {
+      .commentDelete:hover {
         color: $red;
         transition-duration: 400ms;
       }

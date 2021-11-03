@@ -4,9 +4,9 @@ include ./mixins/avatar
 block content
     div#videoContainer(data-id=video._id)
         if isHeroku
-            video(src=video.fileUrl crossorigin)
+            video(src=video.fileUrl data-video-id=video._id crossorigin).video
         else 
-            video(src="/" + video.fileUrl)
+            video(src="/" + video.fileUrl data-video-id=video._id).video
         div#videoControls.videoControls
             div.videoControls__range
                 div.videoControls__progressBar
@@ -52,11 +52,12 @@ block content
     div.video__comments
         ul 
             each comment in video.comments.reverse()
-                li.video__comment(data-id=comment.id)
+                li.video__comment(data-comment-id=comment._id)
                     +mixinAvatar(comment.owner.avatarUrl)
                     span.owner__name #{comment.owner.username}
                     span  #{comment.text}
-                    i.fas.fa-trash-alt.delete
+                    
+                    i.fas.fa-trash-alt.commentDelete
 block scripts
     script(src="/static/js/videoPlayer.js")
     script(src="/static/js/commentSection.js")

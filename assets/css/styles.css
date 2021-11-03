@@ -437,10 +437,9 @@ input[type=submit]:disabled {
   background-color: black;
   font-size: 14px;
   color: white;
-  line-height: 40px;
+  line-height: 14px;
   resize: none;
   border: none;
-  overflow: hidden;
 }
 #commentForm button {
   border: none;
@@ -544,11 +543,11 @@ input[type=submit]:disabled {
 .video__comments ul li i {
   margin-right: 10px;
 }
-.video__comments ul li .delete {
+.video__comments ul li .commentDelete {
   margin-left: 10px;
   cursor: pointer;
 }
-.video__comments ul li .delete:hover {
+.video__comments ul li .commentDelete:hover {
   color: #cc0d00;
   transition-duration: 400ms;
 }
