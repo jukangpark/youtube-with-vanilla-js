@@ -5,8 +5,7 @@ block content
         div.upload__video
             video#preview
             button#actionBtn.social__btn Start Recording
-    if errorMessage 
-        span=errorMessage
+    include partials/errorMessage.pug
     form(method="POST", enctype="multipart/form-data")
         label(for="video") Video File
         input(type="file", accept="video/*", required, id="video", name="video")

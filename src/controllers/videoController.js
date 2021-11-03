@@ -132,7 +132,7 @@ export const search = async (req, res) => {
   if (keyword) {
     videos = await Video.find({
       title: {
-        $regex: new RegExp(`${keyword}$`, "i"),
+        $regex: new RegExp(`${keyword}`, "i"),
         // query 에 이런 옵션들을 추가할 수 있으려면
         // regex 라는 연산자를 써야해
         // 이건 mongoDB가 하는 거야

@@ -226,6 +226,12 @@ footer {
   border-radius: 50%;
 }
 
+.errorMessage {
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
 form {
   max-width: 420px;
   margin: 0 auto;
@@ -617,13 +623,13 @@ main {
   right: 0;
   margin: 0 auto;
   max-width: 200px;
+  border-radius: 5px;
   padding: 10px 20px;
-  border-radius: 10000px;
   text-align: center;
-  animation: goAway 0.5s ease-in-out forwards;
-  animation-delay: 5s;
+  animation: goAway 0.4s ease-in-out forwards;
+  animation-delay: 1.5s;
 }
 .message.error {
-  background-color: tomato;
+  background-color: #cc0d00;
   color: white;
 }
