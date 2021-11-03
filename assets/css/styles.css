@@ -168,6 +168,11 @@ header .header__avatar {
   border-radius: 50%;
 }
 
+.profileIcon {
+  font-size: 25px;
+  color: #808080;
+}
+
 footer {
   text-align: center;
   font-size: 12px;
@@ -505,6 +510,12 @@ input[type=submit]:disabled {
 }
 .profile__data h3 {
   font-size: 18px;
+}
+
+.avatarIcon {
+  font-size: 150px;
+  color: #808080;
+  margin-bottom: 15px;
 }
 
 .edit-profile__form label {
