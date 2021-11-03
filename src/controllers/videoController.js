@@ -14,7 +14,14 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner").populate("comments");
+  const video = await Video.findById(id)
+    .populate("owner")
+    .populate({
+      path: "comments",
+      populate: {
+        path: "owner",
+      },
+    });
   if (!video) {
     return res.render("404", { pageTitle: "Video not found." });
     // if 안에 return 이 없으면 JavaScript 는 영상이 없을 때 if 안의 코드를 실행하고
@@ -172,11 +179,9 @@ export const createComment = async (req, res) => {
   user.comments.push(newComment);
   user.save();
 
-  return res
-    .status(201)
-    .json({
-      newCommentId: newComment._id,
-      owner: user.username,
-      avatarUrl: user.avatarUrl,
-    });
+  return res.status(201).json({
+    newCommentId: newComment._id,
+    owner: user.username,
+    avatarUrl: user.avatarUrl,
+  });
 };

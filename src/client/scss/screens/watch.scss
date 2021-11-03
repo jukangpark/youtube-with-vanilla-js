@@ -9,12 +9,11 @@
       i {
         margin-right: 10px;
       }
-      i:nth-child(3) {
-        float: right;
-        margin-right: 0;
+      .delete {
+        margin-left: 10px;
         cursor: pointer;
       }
-      i:nth-child(3):hover {
+      .delete:hover {
         color: $red;
         transition-duration: 400ms;
       }
@@ -27,6 +26,8 @@
     font-size: 14px;
     color: white;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -34,4 +35,15 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+
+.ownerContainer {
+  display: flex;
+  align-items: center;
+}
+
+.owner__name {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #808080;
 }

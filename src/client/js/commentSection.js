@@ -7,12 +7,10 @@ const addComment = (text, data) => {
   const newComment = document.createElement("li");
   newComment.dataset.id = newCommentId;
   newComment.className = "video__comment";
-  const icon = document.createElement("i");
-  icon.className = "fas fa-user";
   const span = document.createElement("span");
   span.innerText = `${text}`;
   const icon2 = document.createElement("i");
-  icon2.className = "fas fa-trash-alt";
+  icon2.className = "fas fa-trash-alt delete";
 
   let avatar = null;
   if (avatarUrl) {
@@ -31,9 +29,15 @@ const addComment = (text, data) => {
     avatar.appendChild(avatarIcon);
   }
   avatar.className = "comment_avatar";
+  const ownerContainer = document.createElement("div");
+  ownerContainer.className = "ownerContainer";
+  const ownerSpan = document.createElement("span");
+  ownerSpan.className = "owner__name";
+  ownerSpan.innerText = `${owner}`;
 
-  newComment.appendChild(icon);
-  newComment.appendChild(avatar);
+  newComment.prepend(ownerContainer);
+  ownerContainer.appendChild(avatar);
+  ownerContainer.appendChild(ownerSpan);
   newComment.appendChild(span);
   newComment.appendChild(icon2);
   videoComments.prepend(newComment);

@@ -1,0 +1,9 @@
+mixin mixinAvatar(avatarUrl)
+    if avatarUrl
+        if  /^https?:\/\//.test(avatarUrl) || /^data:image/.test(avatarUrl)
+            img(src=avatarUrl crossorigin).comment_avatar
+        else 
+            img(src=`/${avatarUrl}` crossorigin).comment_avatar
+    else
+        div.comment_avatar
+            i.fas.fa-user.avatarIcon
