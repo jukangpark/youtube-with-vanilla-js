@@ -3,11 +3,12 @@ const form = document.getElementById("commentForm");
 const video = document.querySelector(".video");
 let deleteBtns = document.querySelectorAll(".commentDelete");
 
+console.log(deleteBtns);
 const addComment = (text, data) => {
   const { newCommentId, owner, avatarUrl } = data;
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
-  newComment.dataset.id = newCommentId;
+  newComment.dataset.commentId = newCommentId;
   newComment.className = "video__comment";
   const span = document.createElement("span");
   span.innerText = `${text}`;
@@ -55,6 +56,7 @@ const deleteComment = async (event) => {
   const comment = event.currentTarget.parentElement;
   const { videoId } = video.dataset;
   const { commentId } = comment.dataset;
+  console.log(event.currentTarget);
 
   const response = await fetch(
     `/api/videos/${videoId}/comments/${commentId}/delete`,
@@ -88,14 +90,20 @@ const handleSubmit = async (event) => {
     },
     body: JSON.stringify({ text }),
   });
-  if (response.status === 201) {
+  const { url, redirected, status } = response;
+  if (redirected) {
+    return (window.location.href = url);
+  }
+
+  if (status === 201) {
+    textarea.value = "";
     const data = await response.json();
     addComment(text, data);
-    textarea.value = "";
   }
 };
 
 if (form) {
   form.addEventListener("submit", handleSubmit);
 }
+
 deleteBtnsListener();
