@@ -247,6 +247,9 @@ form:not(.search__form) {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+form:not(.commentForm) {
+  width: 100%;
+}
 
 input:not(input[type=range]):not([type=submit]) {
   all: unset;

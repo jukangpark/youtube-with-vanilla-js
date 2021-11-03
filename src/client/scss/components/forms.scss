@@ -7,6 +7,9 @@ form {
     border-radius: 10px;
     border: 1px solid rgba($color: #fff, $alpha: 0.1);
   }
+  &:not(.commentForm) {
+    width: 100%;
+  }
 }
 
 input:not(input[type="range"]):not([type="submit"]) {
