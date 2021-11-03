@@ -23,7 +23,7 @@ export const watch = async (req, res) => {
       },
     });
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Video not found." });
     // if 안에 return 이 없으면 JavaScript 는 영상이 없을 때 if 안의 코드를 실행하고
     // 그 밑에 코드들도 실행할텐데, 그건 우리가 원하지 않는 결과니까.
   }
@@ -155,8 +155,8 @@ export const registerView = async (req, res) => {
 
 export const createComment = async (req, res) => {
   const {
-    body: { text },
     params: { id },
+    body: { text },
     session,
   } = req;
 
@@ -170,7 +170,7 @@ export const createComment = async (req, res) => {
   const newComment = await Comment.create({
     text,
     owner: user._id,
-    video: id,
+    video: video._id,
   });
 
   video.comments.push(newComment);

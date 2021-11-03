@@ -56,8 +56,8 @@ block content
                     +mixinAvatar(comment.owner.avatarUrl)
                     span.owner__name #{comment.owner.username}
                     span  #{comment.text}
-                    
-                    i.fas.fa-trash-alt.commentDelete
+                    if String(loggedInUser._id) === String(comment.owner._id)
+                        i.commentDelete.fas.fa-times
 block scripts
     script(src="/static/js/videoPlayer.js")
     script(src="/static/js/commentSection.js")

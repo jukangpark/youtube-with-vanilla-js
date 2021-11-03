@@ -3,7 +3,6 @@ const form = document.getElementById("commentForm");
 const video = document.querySelector(".video");
 let deleteBtns = document.querySelectorAll(".commentDelete");
 
-console.log(deleteBtns);
 const addComment = (text, data) => {
   const { newCommentId, owner, avatarUrl } = data;
   const videoComments = document.querySelector(".video__comments ul");
@@ -13,7 +12,10 @@ const addComment = (text, data) => {
   const span = document.createElement("span");
   span.innerText = `${text}`;
   const icon2 = document.createElement("i");
-  icon2.className = "fas fa-trash-alt commentDelete";
+
+  icon2.classList.add("fas");
+  icon2.classList.add("fa-times");
+  icon2.classList.add("commentDelete");
 
   let avatar = null;
   if (avatarUrl) {
@@ -25,7 +27,7 @@ const addComment = (text, data) => {
         : `/${avatarUrl}`;
   } else {
     avatar = document.createElement("div");
-    const avatarIcon = document.createElement("1");
+    const avatarIcon = document.createElement("i");
     avatarIcon.classList.add("fas");
     avatarIcon.classList.add("fa-user");
     avatarIcon.classList.add("avatarIcon");
@@ -44,6 +46,9 @@ const addComment = (text, data) => {
   newComment.appendChild(span);
   newComment.appendChild(icon2);
   videoComments.prepend(newComment);
+
+  deleteBtns = document.querySelectorAll(".commentDelete");
+  deleteBtnsListener();
 };
 
 const deleteBtnsListener = () => {
@@ -56,7 +61,6 @@ const deleteComment = async (event) => {
   const comment = event.currentTarget.parentElement;
   const { videoId } = video.dataset;
   const { commentId } = comment.dataset;
-  console.log(event.currentTarget);
 
   const response = await fetch(
     `/api/videos/${videoId}/comments/${commentId}/delete`,
@@ -66,6 +70,7 @@ const deleteComment = async (event) => {
   );
 
   const { url, redirected, status } = response;
+
   if (redirected) {
     return (window.location.href = url);
   }
